@@ -1,0 +1,43 @@
+﻿@page "/fruits"
+@using BlazorApp1.Models
+@inject FruitList FruitService
+
+<PageTitle>Fruits</PageTitle>
+
+<h1>List of Fruits</h1>
+
+@if (fruits == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Available</th>
+                <th>Season</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var fruit in fruits)
+            {
+                <tr>
+                    <td>@fruit.Name</td>
+                    <td>@fruit.Available</td>
+                    <td>@fruit.Season</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<FruitList> fruits;
+
+    protected override async Task OnInitializedAsync()
+    {
+        fruits = await FruitService.GetFruitsAsync();
+    }
+}
