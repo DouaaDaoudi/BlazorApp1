@@ -1,6 +1,7 @@
 using BlazorApp1.Components;
 using BlazorApp1.NewFolder;
 using Microsoft.EntityFrameworkCore;
+using static BlazorApp1.Models.Fruit;
 
 internal class Program
 {
@@ -11,6 +12,8 @@ internal class Program
         // Add services to the container.
         builder.Services.AddRazorComponents()
             .AddInteractiveServerComponents();
+
+        builder.Services.AddScoped<FruitService>();
 
         // Database connection
         builder.Services.AddControllers();
